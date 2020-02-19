@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const port = 3000;
+const port = 4000;
 const server = express();
-mongoose.connect("mongodb://localhost/aticles-db", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost/password-helper-db", { useNewUrlParser: true, useUnifiedTopology: true });
 
 server.use(bodyParser.json());
 server.use((req, res, next) => {

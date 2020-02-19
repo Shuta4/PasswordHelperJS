@@ -1,59 +1,39 @@
 const fs = require('fs');
 const express = require('express');
 const router = express.Router();
-const Article = require('./db/Schemas/article');
+const Password = require('./db/Schemas/Password');
 
-function getDataJSON(path) {
-    var dataJSON = fs.readFile(path);
-    return JSON.parse(dataJSON);
-}
-
-router.get('/start', (req, res) => {
-    // siteImage, siteName, route, contacts and navigation Arrs
-    res.send(getDataJSON("./serverData.json"));
-});
-
-router.put('/start', (req, res) => {
-    // Update site information 
-    //TODO
-});
-
-router.get('/articles', (req, res) => {
-    // All articles
-    Article.find({}).then(articles => {
-        res.send(articles)
+router.get('/passwords/all', (req, res) => {
+    // All passwords
+    Password.find({}).then(passwords => {
+        res.send(passwords)
     });
 });
 
-router.get('/articles/id/:id', (req, res)=> {
-    // Article by id
-    Article.findOne({id: req.params.id}).then(article => res.send(article));
+router.get('/passwords/title/:title', (req, res)=> {
+    // Password by title
+    Password.find({title: req.params.title}).then(password => res.send(password));
 });
 
-router.get('/articles/header/:header', (req, res) => {
-    // Article by its header
-    Article.find({header: req.params.header}).then(article => res.send(article));
+router.get('/passwords/login/:login', (req, res) => {
+    // Password by its login
+    Password.find({login: req.params.login}).then(password => res.send(password));
 });
 
-router.delete('/articles/:id', (req, res) => {
-    // delete article with "id" == "req.params.id"
-    Article.deleteOne({id: req.params.id});
+router.delete('/passwords/delete/:id', (req, res) => {
+    // delete password with "_id" == "req.params.id"
+    Password.findByIdAndDelete(req.params.id).then(() => res.send("Deleted successfully"));
 });
 
-router.delete('/articles/objid/:id', (req, res) => {
-    // delete article with "_id" == "req.params.id"
-    Article.findByIdAndDelete(req.params.id).then(() => res.send("Deleted successfully"));
+router.post('/passwords/add', (req, res) => {
+    // Add password
+    Password.create(req.body).then(password => res.send(password));
 });
 
-router.post('/articles', (req, res) => {
-    // Add article
-    Article.create(req.body).then(article => res.send(article));
-});
-
-router.put('/articles/:id', (req, res) => {
-    // Update article with "id" == "req.params.id"
-    Article.findOneAndUpdate({id: req.params.id}, req.body).then(() => Article.findOne({id: req.params.id}))
-        .then(article => res.send(article));
+router.put('/passwords/update/:id', (req, res) => {
+    // Update password with "id" == "req.params.id"
+    Password.findOneAndUpdate({id: req.params.id}, req.body).then(() => Password.findOne({id: req.params.id}))
+        .then(password => res.send(password));
 });
 
 module.exports = router;
