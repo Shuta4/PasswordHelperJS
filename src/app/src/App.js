@@ -10,22 +10,11 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-/*
-  Route Arr => [
-    {
-      path: string (Url адрес страницы)
-      component: React.Component (Компонент, который будет загружаться)
-      exact: boolean (будет ли компонент затирать предыдущие по Url компоненты)
-    }
-  ]
-*/
-
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.history = createBrowserHistory();
         this.store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(thunk)));
-        this.routeArr = [];
     }
 
     render() {
@@ -36,7 +25,7 @@ class App extends React.Component {
                     <main>
                         <Switch>
                         {
-                            this.routeArr.map((val, index) => {
+                            this.props.routeArr.map((val, index) => {
                                 return <Route key={index} path={val.path} exact={val.exact} component={val.component} />
                             })
                         }
