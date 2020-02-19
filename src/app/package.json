@@ -1,6 +1,7 @@
 {
-  "name": "app",
+  "name": "password-helper-app",
   "version": "0.1.0",
+  "description": "Password helper App",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
