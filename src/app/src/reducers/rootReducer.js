@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { articles } from './articles';
+import { passwords } from './passwords';
 
-const rootReducer = combineReducers({articles});
+const rootReducer = combineReducers({passwords});
 
 export default rootReducer;

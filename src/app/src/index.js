@@ -17,9 +17,9 @@ import AllPasswords from './Components/AllPasswords';
 
 var routeArray = [
     {
-        path: "/",
-        component: AllPasswords,
-        exact: true
+      path: "/",
+      component: AllPasswords,
+      exact: true
     }
 ]
 

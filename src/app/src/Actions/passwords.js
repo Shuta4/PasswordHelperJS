@@ -1,11 +1,11 @@
-export function articlesFetchDataSuccess(articles) {
+export function passwordsFetchDataSuccess(passwords) {
     return {
-        type: "ARTICLES_FETCH_DATA_SUCCESS",
-        articles
+        type: "PASSWORDS_FETCH_DATA_SUCCESS",
+        passwords
     }
 }
 
-export function articlesFetchData(url) {
+export function passwordsFetchData(url) {
     return (dispatch)=> {
         fetch(url, {
             headers:{
@@ -16,8 +16,8 @@ export function articlesFetchData(url) {
             if(!response.ok) throw new Error(response.statusText);
             return response;
         }).then(response => {
-            response.json().then(articles => {
-                dispatch(articlesFetchDataSuccess(articles))
+            response.json().then(jsondata => {
+                dispatch(passwordsFetchDataSuccess(jsondata))
             })
         })
     }
