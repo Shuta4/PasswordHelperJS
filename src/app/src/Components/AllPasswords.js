@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { passwordsFetchData } from '../Actions/passwords'
 
 class AllPasswords extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         this.props.fetchData("http://localhost:4000/api/passwords/all")
     }
