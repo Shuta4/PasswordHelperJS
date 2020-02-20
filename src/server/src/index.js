@@ -4,7 +4,10 @@ const mongoose = require('mongoose')
 
 const port = 4000;
 const server = express();
-mongoose.connect("mongodb://localhost/password-helper-db", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost/password-helper-db", { useNewUrlParser: true, useUnifiedTopology: true }, (e) => {
+  if (e) console.log("Error with connecting to database.\n Error: " + e.errmsg);
+  else console.log("Connected to database.")
+});
 
 server.use(bodyParser.json());
 server.use((req, res, next) => {
