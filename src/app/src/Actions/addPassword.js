@@ -1,24 +1,23 @@
-export function articlesAddDataSuccess() {
+export function passwordsAddDataSuccess() {
     return {
-        type: "ARTICLES_ADD_DATA_SUCCESS",
+        type: "PASSWORDS_ADD_DATA_SUCCESS",
         ok: true
     }
 }
 
-export function articlesAddData(url, article) {
+export function passwordsAddData(url, object) {
     return fetch(url, {
         method: "POST",
         headers:{
             "Content-Type": "application/json;charset=utf-8",
             "Origin": "http://localhost:8080"
         },
-        body: JSON.stringify(article)
+        body: JSON.stringify(object)
     }).then(response => {
         if(!response.ok) throw new Error(response.statusText);
     }).then(() => {
-        alert("Статья добавлена!");
-        return articlesAddDataSuccess();
+        return passwordsAddDataSuccess();
     });
 }
 
-export default articlesAddData;
+export default passwordsAddData;
