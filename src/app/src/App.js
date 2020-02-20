@@ -21,7 +21,7 @@ class App extends React.Component {
         return <Provider store={this.store}>
             <div className="page">
                 <Router history={this.history}>
-                    <Header />
+                    <Header navigationArr={this.props.navigationArr}/>
                     <main>
                         <Switch>
                         {
