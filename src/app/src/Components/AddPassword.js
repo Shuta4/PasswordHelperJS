@@ -1,7 +1,8 @@
 import React from 'react';
 import {passwordsAddData} from '../Actions/addPassword'
+import PasswordForm from './PasswordForm';
 
-class Footer extends React.Component {
+class AddPassword extends React.Component {
     constructor(props) {
         super(props);
         this._fetchAdd = this._fetchAdd.bind(this);
@@ -25,7 +26,7 @@ class Footer extends React.Component {
             additionalInformation: this._form.additional_information.value, 
             creationDate: date
         }
-        this._fetchAdd("http://localhost:4000/api/passwords/add", object)
+        this._fetchAdd("/api/passwords/add", object)
     }
 
     componentDidMount() {
@@ -38,23 +39,9 @@ class Footer extends React.Component {
     render() {
         return <div className="">
             <h2 className="">Добавить новый пароль</h2>
-            <form className="">
-                <p className="">Заголовок записи</p>
-                <input name="title" type="text" className=""/>
-                <p className="">Краткое описание</p>
-                <input name="description" type="text" className=""/>
-                <p className="">Логин (если есть)</p>
-                <input name="login" type="text" className=""/>
-                <p className="">Email (если есть)</p>
-                <input name="email" type="text" className=""/>
-                <p className="">Пароль</p>
-                <input name="password" type="text" className=""/>
-                <p className="">Дополнительная информация</p>
-                <textarea name="additional_information"></textarea>
-                <input type="submit" className="" value="Добавить!" />
-            </form>
+            <PasswordForm />
         </div>
     }
 }
 
-export default Footer;
+export default AddPassword;
