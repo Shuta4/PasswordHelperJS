@@ -10,7 +10,7 @@ export function passwordsAddData(url, object) {
         method: "POST",
         headers:{
             "Content-Type": "application/json;charset=utf-8",
-            "Origin": "http://localhost:8080"
+            "Origin": "http://localhost:3000"
         },
         body: JSON.stringify(object)
     }).then(response => {
