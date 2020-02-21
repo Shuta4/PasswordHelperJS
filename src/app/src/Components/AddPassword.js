@@ -7,6 +7,7 @@ class AddPassword extends React.Component {
         super(props);
         this._fetchAdd = this._fetchAdd.bind(this);
         this._form = null;
+        this._buttonClose = null;
         this._submitHandler = this._submitHandler.bind(this);
     }
 
@@ -26,19 +27,21 @@ class AddPassword extends React.Component {
             additionalInformation: this._form.additional_information.value, 
             creationDate: date
         }
-        this._fetchAdd("/api/passwords/add", object)
+        this._fetchAdd("/api/passwords/add", object);
+        window.location.reload();
     }
 
     componentDidMount() {
         this._form = document.querySelector("form");
-        if(!this._form) console.log(`Error: add password form was not found!\n
-        This error happend in AddPassword element!`)
-        else this._form.addEventListener('submit', this._submitHandler);
+        this._buttonClose = document.querySelector(".close");
+        this._form.addEventListener('submit', this._submitHandler);
+        this._buttonClose.addEventListener('click', this.props.closeButtonHandler);
     }
 
     render() {
         return <div className="">
             <h2 className="">Добавить новый пароль</h2>
+            <button className="close">Закрыть</button>
             <PasswordForm />
         </div>
     }
