@@ -29,9 +29,12 @@ class AllPasswords extends React.Component {
             if (element._id === this.currentPasswordId) return true;
         else return false;
     }
+    closeButtonHandler() {
+        ReactDOM.unmountComponentAtNode(document.querySelector('.wrapper'));
+    }
     _renderEditElement(id) {
         this.currentPasswordId = id;
-        ReactDOM.render(<EditPassword passwordInfo={this.props.passwords.find(this._findPasswordById)} />, document.querySelector(".wrapper"));
+        ReactDOM.render(<EditPassword passwordInfo={this.props.passwords.find(this._findPasswordById)} closeButtonHandler={this.closeButtonHandler} />, document.querySelector(".wrapper"));
     }
     render() {
         return <div><h2>Главная страница, где отображаются все пароли</h2>
