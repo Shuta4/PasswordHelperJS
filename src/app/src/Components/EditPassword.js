@@ -30,14 +30,15 @@ class EditPassword extends React.Component {
 
     componentDidMount() {
         this._form = document.querySelector("form");
-        if(!this._form) console.log(`Error: edit password form was not found!\n
-        This error happend in EditPassword element!`)
-        else this._form.addEventListener('submit', this._submitHandler);
+        this._buttonClose = document.querySelector(".close");
+        this._form.addEventListener('submit', this._submitHandler);
+        this._buttonClose.addEventListener('click', this.props.closeButtonHandler);
     }
 
     render() {
         return <div className="">
-            <h2 className="">Добавить новый пароль</h2>
+            <h2 className="">Редактировать пароль</h2>
+            <button className="close">Отмена</button>
             <PasswordForm passwordInfo={this.props.passwordInfo} />
         </div>
     }
