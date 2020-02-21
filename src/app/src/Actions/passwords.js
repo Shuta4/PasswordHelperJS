@@ -10,7 +10,7 @@ export function passwordsFetchData(url) {
         fetch(url, {
             headers:{
                 "accepts":"application/json",
-                "Origin": "http://localhost:8080"
+                "Origin": "http://localhost:3000"
             }
         }).then(response => {
             if(!response.ok) throw new Error(response.statusText);
