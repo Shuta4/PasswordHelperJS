@@ -9,7 +9,10 @@ router.get('/passwords/all', (req, res) => {
         res.send(passwords)
     });
 });
-
+router.get('/passwords/id/:id', (req, res) => {
+    // Password by _id
+    Password.findById(req.params.id).then(password => res.send(password));
+})
 router.get('/passwords/title/:title', (req, res)=> {
     // Password by title
     Password.find({title: req.params.title}).then(password => res.send(password));
@@ -32,7 +35,7 @@ router.post('/passwords/add', (req, res) => {
 
 router.put('/passwords/update/:id', (req, res) => {
     // Update password with "id" == "req.params.id"
-    Password.findOneAndUpdate({id: req.params.id}, req.body).then(() => Password.findOne({id: req.params.id}))
+    Password.findByIdAndUpdate(req.params.id, req.body).then(() => Password.findOne({id: req.params.id}))
         .then(password => res.send(password));
 });
 
