@@ -1,8 +1,9 @@
-const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const Password = require('./db/Schemas/Password');
+const User = require('./db/Schemas/User');
 
+/* Passwords */
 router.get('/passwords/all', (req, res) => {
     // All passwords
     Password.find({}).then(passwords => {
@@ -37,6 +38,15 @@ router.put('/passwords/update/:id', (req, res) => {
     // Update password with "id" == "req.params.id"
     Password.findByIdAndUpdate(req.params.id, req.body).then(() => Password.findOne({id: req.params.id}))
         .then(password => res.send(password));
+});
+
+/* User */
+
+router.get('/users/all', (req, res) => {
+    // All users
+    User.find({}).then(users => {
+        res.send(users)
+    });
 });
 
 module.exports = router;

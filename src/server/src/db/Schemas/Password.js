@@ -6,7 +6,8 @@ const PasswordSchema = new Schema({
     login: String,
     email: String,
     password: String,
-    additionalInformation: String, 
+    additionalInformation: String,
+    owner_id: Number, 
     creationDate: Date
 });
 
